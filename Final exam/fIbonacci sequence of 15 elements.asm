@@ -1,0 +1,40 @@
+DATA SEGMENT
+    FIB DW 15 DUP(?)
+DATA ENDS
+
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+
+START:
+    MOV AX,DATA
+    MOV DS,AX
+
+    LEA SI,FIB
+
+    MOV WORD PTR [SI],0
+    MOV WORD PTR [SI+2],1
+
+    MOV AX,0
+    MOV BX,1
+
+    ADD SI,4
+    MOV CX,13
+
+UP:
+    MOV DX,AX
+    ADD DX,BX
+
+    MOV [SI],DX
+
+    MOV AX,BX
+    MOV BX,DX
+
+    ADD SI,2
+
+    LOOP UP
+
+    MOV AH,4CH
+    INT 21H
+
+CODE ENDS
+END START
