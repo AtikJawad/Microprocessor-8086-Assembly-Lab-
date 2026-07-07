@@ -1,0 +1,24 @@
+CODE SEGMENT
+    ASSUME CS:CODE
+
+START:
+    MOV AX,2000H
+    MOV DS,AX
+
+    XOR SI,SI
+
+    MOV CX,50
+    MOV AL,0FCH
+
+UP:
+    MOV [SI],AL
+
+    INC SI
+
+    LOOP UP
+
+    MOV AH,4CH
+    INT 21H
+
+CODE ENDS
+END START
