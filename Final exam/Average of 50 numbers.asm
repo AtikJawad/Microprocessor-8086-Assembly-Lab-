@@ -1,0 +1,32 @@
+DATA SEGMENT
+    ARR DB 50 DUP(10)
+    AVG DB ?
+DATA ENDS
+
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+
+START:
+    MOV AX,DATA
+    MOV DS,AX
+
+    LEA SI,ARR
+
+    XOR AX,AX
+    MOV CX,50
+
+UP:
+    ADD AL,[SI]
+    INC SI
+    LOOP UP
+
+    MOV BL,50
+    DIV BL
+
+    MOV AVG,AL
+
+    MOV AH,4CH
+    INT 21H
+
+CODE ENDS
+END START
