@@ -16,9 +16,9 @@ START: MOV AX,DATA
        
 COMPARE:        
         CMP AX,[SI+2]
-        JGE GREATER
+        JGE GREATER ;JBE SMALLER if asked for smallest
         MOV AX,[SI+2]
-GREATER:
+GREATER:         ; SMALLER if asked for smallest
         ADD SI,2
         LOOP COMPARE
         
