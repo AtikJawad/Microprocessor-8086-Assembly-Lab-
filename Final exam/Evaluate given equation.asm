@@ -1,0 +1,36 @@
+DATA SEGMENT
+    X DB 25
+    Y DB ?
+DATA ENDS
+
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+
+START:
+    MOV AX,DATA
+    MOV DS,AX
+
+    MOV AL,X
+
+    SUB AL,30
+
+    JNS NEXT
+
+    NEG AL
+
+NEXT:
+    MOV BL,5
+    MUL BL
+
+    MOV BL,9
+    DIV BL
+
+    ADD AL,7
+
+    MOV Y,AL
+
+    MOV AH,4CH
+    INT 21H
+
+CODE ENDS
+END START
