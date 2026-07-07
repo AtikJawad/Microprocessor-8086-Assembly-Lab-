@@ -1,0 +1,26 @@
+DATA SEGMENT
+    AB DW 100
+    AC DW 120
+    BD DW 80
+    CE DW ?
+DATA ENDS
+
+CODE SEGMENT
+    ASSUME CS:CODE,DS:DATA
+
+START:
+    MOV AX,DATA
+    MOV DS,AX
+
+    MOV AX,AC
+    MUL BD          ; DX:AX = AC × BD
+
+    DIV AB          ; AX = (AC×BD)/AB
+
+    MOV CE,AX
+
+    MOV AH,4CH
+    INT 21H
+
+CODE ENDS
+END START
