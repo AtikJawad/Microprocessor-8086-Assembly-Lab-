@@ -1,6 +1,6 @@
 DATA SEGMENT
     ARR DB 50 DUP(10)
-    AVG DB ?
+    AVG DW ?
 DATA ENDS
 
 CODE SEGMENT
@@ -16,14 +16,17 @@ START:
     MOV CX,50
 
 UP:
-    ADD AL,[SI]
+    XOR DX,DX
+    MOV DL,[SI]      ; Load byte into DL
+    ADD AX,DX        ; Add 16-bit value to AX
+
     INC SI
     LOOP UP
 
     MOV BL,50
-    DIV BL
+    DIV BL           ; AX ÷ BL
 
-    MOV AVG,AL
+    MOV AVG,AX
 
     MOV AH,4CH
     INT 21H
